@@ -2,114 +2,114 @@
 ![Research Project](https://img.shields.io/badge/Project-Research-blue)
 ![License MIT](https://img.shields.io/badge/License-MIT-green)
 
-# STAGE MASTER 2
+# Effect of reverse total shoulder arthroplasty on muscle synergies and shoulder kinematics
 
 ## Description
-Ce dépôt contient les scripts de traitement et d'analyse développés dans le cadre d'une étude portant sur l'**effet d'une arthroplastie totale inversée d'épaule** sur les **synergies musculaires** et la **cinématique articulaire**.  
-Le projet vise à :
-- Traiter les données électromyographiques et cinématiques de patients avant et après chirurgie, ainsi que de sujets asymptomatiques ;
-- Extraire et comparer les **synergies musculaires** (coordination inter-musculaire) ;
-- Analyser la cinématique articulaire huméro-thoracique, scapulo-thoracique et gléno-humérale ;
-- Effectuer des comparaisons statistiques inter-groupes via des ANOVA, tests t, des analyses de clustering, SPM1D et de similarité cosinus.
+This repository contains the data processing and analysis scripts developed for a study on the **effect of reverse total shoulder arthroplasty** on **muscle synergies** and **joint kinematics**.  
+The project aims to:  
+- Process electromyographic (EMG) and kinematic data from patients before and after surgery, as well as from asymptomatic subjects;  
+- Extract and compare **muscle synergies** (inter-muscular coordination);  
+- Analyze humero-thoracic, scapulo-thoracic, and glenohumeral joint kinematics;  
+- Perform inter-group statistical comparisons using ANOVA, t-tests, clustering analyses, SPM1D, and cosine similarity.  
 
-Ce dépôt est organisé autour de six grands dossiers principaux : **SYNERGIES**, **ELECTROMYOGRAPHY**, **KINEMATIC**, **CLUSTERING**, **MEAN PROFIL** et **INDIVIDUAL ANALYSIS**. Une notice d'utilisation (en français) permettant de détailler chaque dossiers (6), fichiers (19) et fonctions (104) utilisées est également disponible.
+The repository is organized into six main folders: **SYNERGIES**, **ELECTROMYOGRAPHY**, **KINEMATIC**, **CLUSTERING**, **MEAN PROFILE**, and **INDIVIDUAL ANALYSIS**. A user guide (in French) detailing each folder (6), file (19), and function (104) is also provided.  
 
 ---
 
-## Table des matières
+## Table of Contents
 - [1) SYNERGIES](#1-synergies)
 - [2) ELECTROMYOGRAPHY](#2-electromyography)
 - [3) KINEMATIC](#3-kinematic)
 - [4) CLUSTERING](#4-clustering)
-- [5) MEAN PROFIL](#5-mean-profil)
+- [5) MEAN PROFILE](#5-mean-profile)
 - [6) INDIVIDUAL ANALYSIS](#6-individual-analysis)
 
 ---
 
 ## 1) SYNERGIES
-Préparation des données EMG pour l’analyse des synergies musculaires à partir des mouvements fonctionnels.  
-Divisé en deux sous-dossiers :
+Preparation of EMG data for muscle synergy analysis based on functional movements.  
+Divided into two subfolders:
 
 ### 1.1) solo_functional
-- Traitement d'**un seul mouvement fonctionnel** pour **un sujet**.
-- Extraction, traitement et normalisation EMG.
-- Découpage automatique en **3 cycles** via le marqueur RHLE (coude).
-- Nettoyage du signal, visualisation et export de la matrice EMG traitée.
+- Processing of **a single functional movement** for **one subject**.  
+- EMG extraction, processing, and normalization.  
+- Automatic segmentation into **3 cycles** using the RHLE marker (elbow).  
+- Signal cleaning, visualization, and export of the processed EMG matrix.  
 
 ### 1.2) main_functional
-- Traitement de **4 mouvements fonctionnels combinés** (12 cycles).
-- Découpage manuel possible, nettoyage des artefacts (écart-type).
-- Assemblage de tous les signaux EMG dans une matrice globale concaténée.
+- Processing of **4 combined functional movements** (12 cycles).  
+- Optional manual segmentation, artifact cleaning (standard deviation).  
+- Concatenation of all EMG signals into a global matrix.  
 
 ---
 
 ## 2) ELECTROMYOGRAPHY
-Analyse des activations musculaires issues des mouvements analytiques et fonctionnels.  
-Organisé en plusieurs sous-dossiers :
+Analysis of muscle activations from analytical and functional movements.  
+Organized into several subfolders:
 
 ### 2.1) Analytic
-- Affichage des signaux bruts normalisés issus des mouvements de référence.
+- Display of normalized raw signals from reference movements.  
 
 ### 2.2) Functional
-- **Filtrage** passe-bande (15-475 Hz),
-- **Rectification** du signal (full-wave),
-- **Lissage** (Root Mean Square),
-- **Normalisation** des activations (sous-tâches maximales normalisées),
-- Calcul des **profils moyens** d'activation, du **rapport signal/bruit** et **ratios d'activation musculaire**,
-- Nettoyage des artefacts et détection de l'activité du dentelé antérieur (artefacts cardiaque).
-- Calcul des **ratios musculaires**, **rapport signal/bruit** et **profils moyens**.
-- Préparation à l'analyse **SPM1D** sur signaux moyens combinés.
-  
+- **Band-pass filtering** (15–475 Hz),  
+- **Signal rectification** (full-wave),  
+- **Smoothing** (Root Mean Square),  
+- **Activation normalization** (task-specific maximal normalization),  
+- Calculation of **mean activation profiles**, **signal-to-noise ratio**, and **muscle activation ratios**,  
+- Artifact cleaning and detection of serratus anterior activity (cardiac artifacts).  
+- Calculation of **muscle ratios**, **signal-to-noise ratio**, and **mean profiles**.  
+- Preparation for **SPM1D** analysis on combined mean signals.  
+
 ---
 
 ## 3) KINEMATIC
-Analyse cinématique de l'épaule à l'aide de la méthode d'Euler.  
+Shoulder kinematic analysis using Euler angles.  
 
 ### 3.1) Main
-- Extraction des angles gléno-huméral, scapulo-thoracique et huméro-thoracique selon l'international society of biomechanics (Wu et al. 2005) à partir des marqueurs Qualisys.
-- Détection et validation des cycles, centrage, correction et filtrage des angles.
-- Calcul des **moyennes globales**, **pics**, **amplitudes** et **vitesses**.
-- Comparabilité inter-côtés (entre épaule gauche et droite).
+- Extraction of glenohumeral, scapulo-thoracic, and humero-thoracic angles according to the International Society of Biomechanics (Wu et al., 2005) from Qualisys markers.  
+- Cycle detection and validation, centering, correction, and angle filtering.  
+- Calculation of **global means**, **peaks**, **amplitudes**, and **velocities**.  
+- Inter-limb comparability (left vs. right shoulder).  
 
 ### 3.2) Plot_kin
-- Tracé des **courbes moyennes d’élévation HT**.
-- Comparaison inter-groupes par **SPM1D**.
+- Plotting of **mean humero-thoracic elevation curves**.  
+- Inter-group comparisons using **SPM1D**.  
 
 ---
 
 ## 4) CLUSTERING
-Méthodes de regroupement des données électromyographiques et cinématiques.
+Methods for clustering EMG and kinematic data.  
 
 ### 4.1) Kinematic clustering
-- Clustering des courbes d'**élévation HT** par k-means.
-- Sélection automatique du nombre de clusters via la **méthode du coude**.
+- Clustering of **humero-thoracic elevation curves** using k-means.  
+- Automatic cluster number selection via the **elbow method**.  
 
 ### 4.2) Synergies clustering
-- Clustering des vecteurs **W** (synergies musculaires) et **H** (activations temporelles).
-- Application combinée de **PCA** et **k-means**.
+- Clustering of **W** (muscle weights) and **H** (temporal activations) vectors.  
+- Combined application of **PCA** and **k-means**.  
 
 ---
 
-## 5) MEAN PROFIL
-Comparaison des profils moyens extraits de l’analyse des synergies musculaires.
+## 5) MEAN PROFILE
+Comparison of mean profiles extracted from muscle synergy analysis.  
 
 ### 5.1) Comparaison_VAF
-- Comparaison des **valeurs de variance accounted for (VAF)** entre groupes.
+- Comparison of **variance accounted for (VAF)** values between groups.  
 
 ### 5.2) Comparaison_SYN
-- Comparaison des **poids musculaires (W)** et **activations (H)** par **ANOVA suivi de post-hoc**.
-- Corrélations de Pearson, barplots et courbes.
+- Comparison of **muscle weights (W)** and **activations (H)** using **ANOVA with post-hoc tests**.  
+- Pearson correlations, barplots, and curves.  
 
 ---
 
 ## 6) INDIVIDUAL ANALYSIS
-Analyse individualisée des profils EMG, cinématiques et synergiques.
+Individual analysis of EMG, kinematics, and synergy profiles.  
 
 ### 6.1) Electromyography
-- Comparaison des **pics EMG** entre groupes, par muscle et sujet.
+- Comparison of **EMG peaks** between groups, by muscle and subject.  
 
 ### 6.2) Kinematic
-- Comparaison des **pics et amplitudes huméro-thoracique** entre groupes et sujet.
+- Comparison of **humero-thoracic peaks and amplitudes** between groups and subjects.  
 
 ### 6.3) Synergy
-- Calcul de la **similarité cosinus** entre chaque synergie individuelle et le profil de référence asymptomatique.
+- Calculation of **cosine similarity** between each individual synergy and the asymptomatic reference profile.
