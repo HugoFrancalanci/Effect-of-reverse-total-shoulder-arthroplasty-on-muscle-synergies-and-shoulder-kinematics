@@ -4,7 +4,6 @@
 
 # Effect of reverse total shoulder arthroplasty on muscle synergies and shoulder kinematics
 
-## Description
 This repository contains the data processing and analysis scripts developed for a study on the **effect of reverse total shoulder arthroplasty** on **muscle synergies** and **joint kinematics**.  
 The project aims to:  
 - Process electromyographic (EMG) and kinematic data from patients before and after surgery, as well as from asymptomatic subjects;  
